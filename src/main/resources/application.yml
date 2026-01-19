@@ -1,0 +1,48 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: secureauth-api
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/secureauth
+    username: postgres
+    password: sakthi
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+        jdbc:
+          batch_size: 50
+        order_inserts: true
+        order_updates: true
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      timeout: 60000
+
+  cache:
+    type: redis
+    redis:
+      time-to-live: 10m
+      cache-null-values: false
+
+security:
+  jwt:
+    secret: f3a9c7d8b2e14f0c9a6d3b7e8c1f5a2d4e7b9c0f1a3d6e8b4c2f9a7d5e1c0b3f8
+    access-token-expiration: 900000
+    refresh-token-expiration: 604800000
+
+logging:
+  level:
+    org.springframework.security: INFO
+    org.hibernate.SQL: WARN
